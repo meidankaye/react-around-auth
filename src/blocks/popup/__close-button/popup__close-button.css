@@ -4,9 +4,12 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
+    background-color: #000000;
     cursor: pointer;
     min-width: 40px;
     min-height: 40px;
+    padding: 0;
+    border: 0;
     top: -48.28px;
     right: -48.28px;
 }

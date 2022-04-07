@@ -1,7 +1,6 @@
 .page {
-    position: relative;
-    max-width: 1280px;
-    min-width: 100%;
+    margin: 0;
+    padding: 0;
     background: #000000;
 }
 
