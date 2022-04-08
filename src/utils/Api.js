@@ -1,8 +1,11 @@
-export default class Api {
+import React from "react";
 
-  constructor({ baseUrl, headers }) {
-    this._baseUrl = baseUrl;
-    this._headers = headers;
+class Api extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this._baseUrl = props.baseUrl;
+    this._headers = props.headers;
   }
 
   _customFetch = (url, headers) => {
@@ -76,3 +79,11 @@ export default class Api {
   }
 
 }
+
+export const api = new Api({
+  baseUrl: "https://around.nomoreparties.co/v1/group-12",
+  headers: {
+      authorization: "439544b2-326e-4000-bd7d-7d8ec93af705",
+      "Content-Type": "application/json",
+  },
+});

@@ -9,6 +9,8 @@
     background-color: rgba(0, 0, 0, 0.8);
     visibility: hidden;
     transition: visibility 0.1s, opacity 0.1s linear;
+
+    background-image: url(../../../images/profile-edit-image-button.svg);
 }
 
 

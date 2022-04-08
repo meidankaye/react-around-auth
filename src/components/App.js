@@ -23,6 +23,12 @@ function App() {
     setIsEditAvatarPopupOpen(true);
   }
 
+  function closeAllPopups() {
+    setIsEditProfilePopupOpen(false);
+    setIsAddPlacePopupOpen(false);
+    setIsEditAvatarPopupOpen(false);
+  }
+
   return (
     <div className="page">
       <div className="page__wrapper">
@@ -37,6 +43,7 @@ function App() {
           title="Edit profile"
           submitButton="Save"
           isOpen={isEditProfilePopupOpen}
+          onClose={closeAllPopups}
         >
           <input
             id="name-input"
@@ -66,6 +73,7 @@ function App() {
           title="New Place"
           submitButton="Create"
           isOpen={isAddPlacePopupOpen}
+          onClose={closeAllPopups}
         >
           <input
             id="title-input"
@@ -93,6 +101,7 @@ function App() {
           title="Change profile picture"
           submitButton="Save"
           isOpen={isEditAvatarPopupOpen}
+          onClose={closeAllPopups}
         >
           <input
             id="avatar-input"
