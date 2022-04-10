@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/around-react/static/css/main.7a8234ed.css",
+    "main.js": "/around-react/static/js/main.db4db52a.js",
+    "static/js/787.1c78f32b.chunk.js": "/around-react/static/js/787.1c78f32b.chunk.js",
+    "static/media/Inter-Regular.woff2": "/around-react/static/media/Inter-Regular.a416f4674fad5f019461.woff2",
+    "static/media/Inter-Medium.woff2": "/around-react/static/media/Inter-Medium.293fd13dbca5a3e450ef.woff2",
+    "static/media/Inter-Black.woff2": "/around-react/static/media/Inter-Black.15ca31c0a2a68f76d2d1.woff2",
+    "static/media/places-heart.svg": "/around-react/static/media/places-heart.99043841e8bec6b9df21.svg",
+    "index.html": "/around-react/index.html",
+    "static/media/places-trash.svg": "/around-react/static/media/places-trash.ba43124316072f7a8629.svg",
+    "static/media/places-heart-black.svg": "/around-react/static/media/places-heart-black.f8482d28867cec189b08.svg",
+    "static/media/form-x-button.svg": "/around-react/static/media/form-x-button.e6c3a9a9a26912881a20.svg",
+    "static/media/profile-edit-button.svg": "/around-react/static/media/profile-edit-button.af236f6cf67005f1d7aa.svg",
+    "static/media/profile-edit-image-button.svg": "/around-react/static/media/profile-edit-image-button.a086f758840ae814ecde.svg",
+    "static/media/plus-button.svg": "/around-react/static/media/plus-button.bed8c136e13907f5eefb.svg",
+    "main.7a8234ed.css.map": "/around-react/static/css/main.7a8234ed.css.map",
+    "main.db4db52a.js.map": "/around-react/static/js/main.db4db52a.js.map",
+    "787.1c78f32b.chunk.js.map": "/around-react/static/js/787.1c78f32b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7a8234ed.css",
+    "static/js/main.db4db52a.js"
+  ]
+}
