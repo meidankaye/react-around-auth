@@ -1,11 +1,18 @@
 import React from "react";
+import Card from "./Card";
 import { api } from "../utils/Api";
-import editIconPath from "../images/profile-edit-image-button.svg";
+// import editIconPath from "../images/profile-edit-image-button.svg";
 
-function Main({ onEditProfileClick, onAddPlaceClick, onEditAvatarClick }) {
+function Main({
+  onEditProfileClick,
+  onAddPlaceClick,
+  onEditAvatarClick,
+  onCardClick,
+}) {
   const [userName, setUserName] = React.useState("");
   const [userDescription, setUserDescription] = React.useState("");
   const [userAvatar, setUserAvatar] = React.useState("");
+  const [cards, setCards] = React.useState([]);
 
   React.useEffect(() => {
     api
@@ -16,7 +23,13 @@ function Main({ onEditProfileClick, onAddPlaceClick, onEditAvatarClick }) {
         setUserAvatar(userData.avatar);
       })
       .catch((err) => console.log(`Error.....: ${err}`));
-  });
+    api
+      .getInitialCards()
+      .then((cardsData) => {
+        setCards(cardsData);
+      })
+      .catch((err) => console.log(`Error.....: ${err}`));
+  }, []);
 
   return (
     <main className="main">
@@ -24,7 +37,7 @@ function Main({ onEditProfileClick, onAddPlaceClick, onEditAvatarClick }) {
         <div className="profile__image-wrapper">
           <img
             className="profile__image"
-            alt="User Avatar"
+            alt=""
             style={{ backgroundImage: `url(${userAvatar})` }}
           />
           <div
@@ -33,8 +46,8 @@ function Main({ onEditProfileClick, onAddPlaceClick, onEditAvatarClick }) {
           ></div>
         </div>
         <div className="profile__info">
-          <h1 className="profile__name">Jacques Cousteau</h1>
-          <p className="profile__profession">Explorer</p>
+          <h1 className="profile__name">{userName}</h1>
+          <p className="profile__profession">{userDescription}</p>
           <button
             className="profile__edit-button"
             type="button"
@@ -47,8 +60,11 @@ function Main({ onEditProfileClick, onAddPlaceClick, onEditAvatarClick }) {
           onClick={onAddPlaceClick}
         ></button>
       </section>
-
-      {/* <section className="places"></section> */}
+      <section className="places">
+        {cards.map((card) => (
+          <Card key={card._id} card={card} onCardClick={onCardClick} />
+        ))}
+      </section>
     </main>
   );
 }

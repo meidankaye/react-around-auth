@@ -3,13 +3,14 @@ import Main from "./Main";
 import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
-import { useState } from "react";
+import React, { useState } from "react";
 
 function App() {
-  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
-  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
-  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
-  // const [isConfirmPopupOpen, setIsConfirmPopupOpen] = useState(false);
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
+  const [selectedCard, setSelectedCard] = useState(undefined);
+  const [isConfirmPopupOpen, setIsConfirmPopupOpen] = useState(false);
 
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(true);
@@ -23,10 +24,20 @@ function App() {
     setIsEditAvatarPopupOpen(true);
   }
 
+  function handleConfirmClick() {
+    setIsConfirmPopupOpen(true);
+  }
+
+  function handleCardClick(card) {
+    setSelectedCard(card);
+  }
+
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
+    setIsConfirmPopupOpen(false);
+    setSelectedCard(undefined);
   }
 
   return (
@@ -37,6 +48,8 @@ function App() {
           onEditProfileClick={handleEditProfileClick}
           onAddPlaceClick={handleAddPlaceClick}
           onEditAvatarClick={handleEditAvatarClick}
+          onConfirmclick={handleConfirmClick}
+          onCardClick={handleCardClick}
         />
         <PopupWithForm
           name="edit"
@@ -113,7 +126,14 @@ function App() {
           />
           <span className="popup__error" id="avatar-input-error"></span>
         </PopupWithForm>
-        {/* <ImagePopup card={selectedCard} /> */}
+        <PopupWithForm
+        name="confirm"
+        title="Are you sure?"
+        submitButton="Yes"
+        isOpen={isConfirmPopupOpen}
+        onClose={closeAllPopups}
+        />
+        <ImagePopup card={selectedCard} onClose={closeAllPopups} />
         <Footer />
       </div>
     </div>
