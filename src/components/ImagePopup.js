@@ -7,7 +7,11 @@ function ImagePopup({ card, onClose }) {
           type="button"
           onClick={onClose}
         ></button>
-        <img src={card ? card.link : ""} alt="Couldn't load" className="popup__image-preview" />
+        <img
+          src={card ? card.link : ""}
+          alt={card?.name}
+          className="popup__image-preview"
+        />
         <p className="popup__image-name">{card ? card.name : ""}</p>
       </div>
     </div>

@@ -35,9 +35,8 @@ function Main({
     <main className="main">
       <section className="profile">
         <div className="profile__image-wrapper">
-          <img
+          <div
             className="profile__image"
-            alt=""
             style={{ backgroundImage: `url(${userAvatar})` }}
           />
           <div
