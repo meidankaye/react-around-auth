@@ -4,6 +4,7 @@ import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
 import EditProfilePopup from "./EditProfilePopup";
+import AddPlacePopup from "./AddPlacePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import React from "react";
@@ -81,6 +82,16 @@ function App() {
       .catch((err) => console.log(`Error.....: ${err}`));
   }
 
+  function handleAddPlaceSubmit(cardData) {
+    api
+      .addCard(cardData)
+      .then((newCard) => {
+        setCards([newCard, ...cards]);
+        closeAllPopups();
+      })
+      .catch((err) => console.log(`Error.....: ${err}`));
+  }
+
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(true);
   }
@@ -129,34 +140,11 @@ function App() {
             onClose={closeAllPopups}
             onUpdateUser={handleUpdateUser}
           />
-          <PopupWithForm
-            name="add"
-            title="New Place"
-            submitButton="Create"
+          <AddPlacePopup
             isOpen={isAddPlacePopupOpen}
             onClose={closeAllPopups}
-          >
-            <input
-              id="title-input"
-              type="text"
-              name="title"
-              className="popup__input popup__input_type_title"
-              placeholder="Title"
-              required
-              minLength="1"
-              maxLength="30"
-            />
-            <span className="popup__error" id="title-input-error"></span>
-            <input
-              id="link-input"
-              type="url"
-              name="link"
-              className="popup__input popup__input_type_link"
-              placeholder="Image link"
-              required
-            />
-            <span className="popup__error" id="link-input-error"></span>
-          </PopupWithForm>
+            onAddPlaceSubmit={handleAddPlaceSubmit}
+          />
           <EditAvatarPopup
             isOpen={isEditAvatarPopupOpen}
             onClose={closeAllPopups}

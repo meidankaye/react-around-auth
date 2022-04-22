@@ -44,14 +44,11 @@ class Api extends React.Component {
     });
   }
 
-  addCard({ name, link }) {
+  addCard(data) {
     return this._customFetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
       method: "POST",
-      body: JSON.stringify({
-        name,
-        link,
-      }),
+      body: JSON.stringify(data),
     });
   }
 
