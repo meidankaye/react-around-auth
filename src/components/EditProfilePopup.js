@@ -54,7 +54,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
       <input
         id="profession-input"
         type="text"
-        name="profession"
+        name="about"
         className="popup__input popup__input_type_profession"
         placeholder="About Me"
         required
