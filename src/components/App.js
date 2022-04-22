@@ -4,8 +4,9 @@ import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
 import EditProfilePopup from "./EditProfilePopup";
+import EditAvatarPopup from "./EditAvatarPopup";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
-import React, { useState } from "react";
+import React from "react";
 import { api } from "../utils/Api";
 
 function App() {
@@ -14,8 +15,8 @@ function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
     React.useState(false);
-  const [selectedCard, setSelectedCard] = useState(undefined);
-  const [isConfirmPopupOpen, setIsConfirmPopupOpen] = useState(false);
+  const [selectedCard, setSelectedCard] = React.useState(undefined);
+  const [isConfirmPopupOpen, setIsConfirmPopupOpen] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState({
     name: "",
     about: "",
@@ -60,11 +61,21 @@ function App() {
     });
   }
 
-  function handleUpdateUser(currentUser) {
+  function handleUpdateUser(userData) {
     api
-      .updateProfile({ name: currentUser.name, about: currentUser.about })
-      .then((userData) => {
-        setCurrentUser(userData);
+      .updateProfile(userData)
+      .then((currentUser) => {
+        setCurrentUser(currentUser);
+        closeAllPopups();
+      })
+      .catch((err) => console.log(`Error.....: ${err}`));
+  }
+
+  function handleUpdateAvatar(userData) {
+    api
+      .updateUserImage(userData)
+      .then((currentUser) => {
+        setCurrentUser(currentUser);
         closeAllPopups();
       })
       .catch((err) => console.log(`Error.....: ${err}`));
@@ -146,23 +157,11 @@ function App() {
             />
             <span className="popup__error" id="link-input-error"></span>
           </PopupWithForm>
-          <PopupWithForm
-            name="avatar"
-            title="Change profile picture"
-            submitButton="Save"
+          <EditAvatarPopup
             isOpen={isEditAvatarPopupOpen}
             onClose={closeAllPopups}
-          >
-            <input
-              id="avatar-input"
-              type="url"
-              name="link"
-              className="popup__input popup__input_type_link"
-              placeholder="Avatar link"
-              required
-            />
-            <span className="popup__error" id="avatar-input-error"></span>
-          </PopupWithForm>
+            onUpdateAvatar={handleUpdateAvatar}
+          />
           <PopupWithForm
             name="confirm"
             title="Are you sure?"

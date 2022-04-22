@@ -29,17 +29,17 @@ class Api extends React.Component {
     return this._customFetch(`${this._baseUrl}/users/me/avatar`, {
       headers: this._headers,
       method: "PATCH",
-      body: JSON.stringify({ avatar: data }),
+      body: JSON.stringify({ avatar: data.avatar }),
     });
   }
 
-  updateProfile(data) {
+  updateProfile({ name, about }) {
     return this._customFetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
       method: "PATCH",
       body: JSON.stringify({
-        name: data.name,
-        about: data.profession,
+        name: name,
+        about: about,
       }),
     });
   }
