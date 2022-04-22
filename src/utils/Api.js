@@ -1,6 +1,6 @@
 import React from "react";
 
-class Api extends React.Component {
+export default class Api extends React.Component {
   constructor(props) {
     super(props);
     this._baseUrl = props.baseUrl;
