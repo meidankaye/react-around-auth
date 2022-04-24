@@ -22,6 +22,11 @@ function AddPlacePopup({ isOpen, onClose, onAddPlaceSubmit }) {
     });
   }
 
+  React.useEffect(() => { 
+    setTitle(""); 
+    setLink(""); 
+  }, [isOpen]);
+
   return (
     <PopupWithForm
       name="add"
@@ -40,6 +45,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlaceSubmit }) {
         required
         minLength="1"
         maxLength="30"
+        value={title}
         onChange={handleTitleChange}
       />
       <span className="popup__error" id="title-input-error"></span>
@@ -50,6 +56,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlaceSubmit }) {
         className="popup__input popup__input_type_link"
         placeholder="Image link"
         required
+        value={link}
         onChange={handleLinkChange}
       />
       <span className="popup__error" id="link-input-error"></span>
