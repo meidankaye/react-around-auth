@@ -8,6 +8,7 @@ import AddPlacePopup from "./AddPlacePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import React from "react";
+import { Route } from "react-router-dom";
 import api from "../utils/api";
 
 function App() {
@@ -121,47 +122,49 @@ function App() {
   }
 
   return (
-    <div className="page">
-      <div className="page__wrapper">
-        <CurrentUserContext.Provider value={currentUser}>
-          <Header />
-          <Main
-            onEditProfileClick={handleEditProfileClick}
-            onAddPlaceClick={handleAddPlaceClick}
-            onEditAvatarClick={handleEditAvatarClick}
-            cards={cards}
-            onConfirmclick={handleConfirmClick}
-            onCardClick={handleCardClick}
-            onCardLike={handleCardLike}
-            onCardDelete={handleCardDelete}
-          />
-          <EditProfilePopup
-            isOpen={isEditProfilePopupOpen}
-            onClose={closeAllPopups}
-            onUpdateUser={handleUpdateUser}
-          />
-          <AddPlacePopup
-            isOpen={isAddPlacePopupOpen}
-            onClose={closeAllPopups}
-            onAddPlaceSubmit={handleAddPlaceSubmit}
-          />
-          <EditAvatarPopup
-            isOpen={isEditAvatarPopupOpen}
-            onClose={closeAllPopups}
-            onUpdateAvatar={handleUpdateAvatar}
-          />
-          <PopupWithForm
-            name="confirm"
-            title="Are you sure?"
-            submitButton="Yes"
-            isOpen={isConfirmPopupOpen}
-            onClose={closeAllPopups}
-          />
-          <ImagePopup card={selectedCard} onClose={closeAllPopups} />
-          <Footer />
-        </CurrentUserContext.Provider>
+    <>
+      <div className="page">
+        <div className="page__wrapper">
+          <CurrentUserContext.Provider value={currentUser}>
+            <Header />
+            <Main
+              onEditProfileClick={handleEditProfileClick}
+              onAddPlaceClick={handleAddPlaceClick}
+              onEditAvatarClick={handleEditAvatarClick}
+              cards={cards}
+              onConfirmclick={handleConfirmClick}
+              onCardClick={handleCardClick}
+              onCardLike={handleCardLike}
+              onCardDelete={handleCardDelete}
+            />
+            <EditProfilePopup
+              isOpen={isEditProfilePopupOpen}
+              onClose={closeAllPopups}
+              onUpdateUser={handleUpdateUser}
+            />
+            <AddPlacePopup
+              isOpen={isAddPlacePopupOpen}
+              onClose={closeAllPopups}
+              onAddPlaceSubmit={handleAddPlaceSubmit}
+            />
+            <EditAvatarPopup
+              isOpen={isEditAvatarPopupOpen}
+              onClose={closeAllPopups}
+              onUpdateAvatar={handleUpdateAvatar}
+            />
+            <PopupWithForm
+              name="confirm"
+              title="Are you sure?"
+              submitButton="Yes"
+              isOpen={isConfirmPopupOpen}
+              onClose={closeAllPopups}
+            />
+            <ImagePopup card={selectedCard} onClose={closeAllPopups} />
+            <Footer />
+          </CurrentUserContext.Provider>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
