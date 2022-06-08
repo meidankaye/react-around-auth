@@ -1,23 +1,23 @@
-import React from "react";
-import { Link, withRouter, useState, useHistory } from "react-router-dom";
-import * as auth from "../utils/auth";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./styles/Register.css";
 
-function Register() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+function Register({ onRegister }) {
+  const [values, setValues] = useState({
+    email: "",
+    password: "",
+  });
 
-  const history = useHistory();
+  
+  function handleChange(e) {
+    const { type, value } = e.target;
+    setValues({ ...values, [type]: value });
+  }
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    auth.register(password, email).then((res) => {
-      if (res) {
-        history.push("/signin");
-      } else {
-        console.log("Something went wrong.");
-      }
-    });
+    onRegister(values);
   };
 
   return (
@@ -28,25 +28,31 @@ function Register() {
           className="register__input"
           placeholder="Email"
           type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={values.email}
+          onChange={handleChange}
           required
         ></input>
         <input
           className="register__input"
           placeholder="Password"
           type="text"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={values.password}
+          onChange={handleChange}
           required
         ></input>
-        <button className="register__button" type="submit" onSubmit={handleSubmit}>
+        <button
+          className="register__button"
+          type="submit"
+          onSubmit={handleSubmit}
+        >
           Sign Up
         </button>
       </form>
-      <p className="register__message">Already a member? Log in here!</p>
+      <Link to="/signin" className="register__message">
+        Already a member? Log in here!
+      </Link>
     </div>
   );
 }
 
-export default withRouter(Register);
+export default Register;
