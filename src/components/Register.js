@@ -21,11 +21,11 @@ function Register({ onRegister }) {
   };
 
   return (
-    <div className="register">
-      <h1 className="register__title">Sign up</h1>
-      <form className="register__form">
+    <div className="auth">
+      <h1 className="auth__title">Sign up</h1>
+      <form className="auth__form">
         <input
-          className="register__input"
+          className="auth__input"
           placeholder="Email"
           type="email"
           value={values.email}
@@ -33,22 +33,22 @@ function Register({ onRegister }) {
           required
         ></input>
         <input
-          className="register__input"
+          className="auth__input"
           placeholder="Password"
-          type="text"
+          type="password"
           value={values.password}
           onChange={handleChange}
           required
         ></input>
         <button
-          className="register__button"
+          className="auth__button"
           type="submit"
           onSubmit={handleSubmit}
         >
           Sign Up
         </button>
       </form>
-      <Link to="/signin" className="register__message">
+      <Link to="/signin" className="auth__message">
         Already a member? Log in here!
       </Link>
     </div>

@@ -18,11 +18,11 @@ function Login({ onLogin }) {
   };
 
   return (
-    <div className="login">
-      <h1 className="login__title">Login</h1>
-      <form className="login__form">
+    <div className="auth">
+      <h1 className="auth__title">Login</h1>
+      <form className="auth__form">
         <input
-          className="login__input"
+          className="auth__input"
           placeholder="Email"
           type="email"
           value={values.email}
@@ -30,18 +30,18 @@ function Login({ onLogin }) {
           required
         ></input>
         <input
-          className="login__input"
+          className="auth__input"
           placeholder="Password"
-          type="text"
+          type="password"
           value={values.password}
           onChange={handleChange}
           required
         ></input>
-        <button className="login__button" type="submit" onSubmit={handleSubmit}>
+        <button className="auth__button" type="submit" onSubmit={handleSubmit}>
           Login
         </button>
       </form>
-      <Link to="/signup" className="login__message">
+      <Link to="/signup" className="auth__message">
         Not a member yet? Sign up here!
       </Link>
     </div>

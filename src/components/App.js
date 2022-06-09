@@ -31,6 +31,7 @@ function App() {
   const [cards, setCards] = React.useState([]);
   const [token, setToken] = React.useState(localStorage.getItem("token"));
   const [loggedIn, setLoggedIn] = React.useState(false);
+  const [registered, setRegistered] = React.useState(false);
   const [values, setValues] = React.useState({
     email: "",
     password: "",
@@ -147,6 +148,18 @@ function App() {
       });
   }
 
+  function handleResgister(values) {
+    register(values)
+      .then(() => {
+        navigate("./signin");
+        setRegistered(true)
+      })
+      .catch((err) => {
+        console.log(err);
+        setRegistered(false);
+      })
+  }
+
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
@@ -156,16 +169,16 @@ function App() {
   }
 
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <ProtectedRoute
-            element={
-              <>
-                <div className="page">
-                  <div className="page__wrapper">
-                    <CurrentUserContext.Provider value={currentUser}>
+    <CurrentUserContext.Provider value={currentUser}>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute
+              element={
+                <>
+                  <div className="page">
+                    <div className="page__wrapper">
                       <Header />
                       <Main
                         onEditProfileClick={handleEditProfileClick}
@@ -204,33 +217,33 @@ function App() {
                         onClose={closeAllPopups}
                       />
                       <Footer />
-                    </CurrentUserContext.Provider>
+                    </div>
                   </div>
-                </div>
-              </>
-            }
-          />
-        }
-      />
-      <Route
-        path="/signin"
-        element={
-          <>
-            <Header />
-            <Login onLogin={handleLogin} onChange={handleChange} />
-          </>
-        }
-      />
-      <Route 
-        path="/signup"
-        element={
-          <>
-            <Header />
-            <Register onChange={handleChange} />
-          </>
-        } 
-      />
-    </Routes>
+                </>
+              }
+            />
+          }
+        />
+        <Route
+          path="/signin"
+          element={
+            <>
+              <Header />
+              <Login onLogin={handleLogin} onChange={handleChange} />
+            </>
+          }
+        />
+        <Route
+          path="/signup"
+          element={
+            <>
+              <Header />
+              <Register onChange={handleChange} onRegister={handleResgister} />
+            </>
+          }
+        />
+      </Routes>
+    </CurrentUserContext.Provider>
   );
 }
 

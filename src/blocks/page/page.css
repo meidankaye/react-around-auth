@@ -1,7 +1,5 @@
-.page {
-    margin: 0;
-    padding: 0;
-    background: #000000;
+html {
+    background-color: black;
 }
 
 @media screen and (max-width: 1279px) {
