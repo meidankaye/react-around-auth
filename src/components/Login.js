@@ -38,7 +38,7 @@ function Login({ onLogin }) {
           required
         ></input>
         <button className="auth__button" type="submit" onSubmit={handleSubmit}>
-          Login
+          Log in
         </button>
       </form>
       <Link to="/signup" className="auth__message">

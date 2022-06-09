@@ -48,6 +48,11 @@
 @import url(./blocks/popup/__title/popup__title.css);
 @import url(./blocks/popup/__title/_confirm/popup__title_confirm.css);
 @import url(./blocks/auth/auth.css);
+@import url(./blocks/auth/__title/auth__title.css);
+@import url(./blocks/auth/__form/auth__form.css);
+@import url(./blocks/auth/__button/auth__button.css);
+@import url(./blocks/auth/__input/auth__input.css);
+@import url(./blocks/auth/__message/auth__message.css);
 @import url(./blocks/popup/_opened/popup_opened.css);
 @import url(./blocks/footer/footer.css);
 @import url(./blocks/footer/__text/footer__text.css);

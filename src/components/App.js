@@ -12,7 +12,7 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import React from "react";
 import { useNavigate, Route, Routes } from "react-router-dom";
 import api from "../utils/api";
-import { register, authorize } from "../utils/auth";
+import { register, authorize, getToken } from "../utils/auth";
 import ProtectedRoute from "../components/ProtectedRoute";
 
 function App() {
@@ -139,6 +139,7 @@ function App() {
           setToken(res.token);
 
           navigate("/");
+          console.log(loggedIn);
         } else {
           throw new Error("No token recieved!");
         }
@@ -158,6 +159,23 @@ function App() {
         console.log(err);
         setRegistered(false);
       })
+  }
+
+  function handleTokenCheck() {
+    if (token) {
+      localStorage.setItem("token", token);
+      getToken(token)
+        .then((res) => {
+          setValues(res.data.email);
+          setLoggedIn(true);
+          navigate("/");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      setLoggedIn(false);
+    }
   }
 
   function closeAllPopups() {
@@ -221,6 +239,7 @@ function App() {
                   </div>
                 </>
               }
+              loggedIn={loggedIn}
             />
           }
         />
