@@ -1,29 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "./styles/Register.css";
 
-function Register({ onRegister }) {
-  const [values, setValues] = useState({
-    email: "",
-    password: "",
-  });
+const Register = (props) => {
+  const { loggedIn, onSubmit } = props;
+  const [values, setValues] = useState({});
 
-  
-  function handleChange(e) {
-    const { type, value } = e.target;
-    setValues({ ...values, [type]: value });
-  }
-
+  const handleChange = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onRegister(values);
+    onSubmit({ email: values.email, password: values.password });
   };
+
+  useEffect(() => {
+    setValues({});
+  }, [loggedIn]);
 
   return (
     <div className="auth">
       <h1 className="auth__title">Sign up</h1>
-      <form className="auth__form">
+      <form onSubmit={handleSubmit} className="auth__form">
         <input
           className="auth__input"
           placeholder="Email"
@@ -40,11 +38,7 @@ function Register({ onRegister }) {
           onChange={handleChange}
           required
         ></input>
-        <button
-          className="auth__button"
-          type="submit"
-          onSubmit={handleSubmit}
-        >
+        <button className="auth__button" type="submit">
           Sign Up
         </button>
       </form>
@@ -53,6 +47,6 @@ function Register({ onRegister }) {
       </Link>
     </div>
   );
-}
+};
 
 export default Register;
