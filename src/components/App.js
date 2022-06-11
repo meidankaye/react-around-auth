@@ -28,6 +28,7 @@ function App() {
     about: "",
     avatar: "",
   });
+  const [values, setValues] = React.useState({ email: "", password: "" });
   const [cards, setCards] = React.useState([]);
   const [loggedIn, setLoggedIn] = React.useState(false);
   const navigate = useNavigate();
@@ -128,7 +129,6 @@ function App() {
           setCurrentUser(email);
 
           navigate("/");
-          console.log(loggedIn);
         } else {
           throw new Error("No token recieved!");
         }
@@ -153,6 +153,7 @@ function App() {
     token &&
       validateToken(token)
         .then((res) => {
+          setValues(res.data.email)
           setLoggedIn(true);
           navigate("/");
         })
@@ -160,6 +161,13 @@ function App() {
           console.log(err);
         });
   });
+
+  function handleLogout(e) {
+    localStorage.removeItem("jwt");
+    setLoggedIn(false);
+    setValues("");
+    navigate("signin");
+  }
 
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false);
@@ -196,7 +204,11 @@ function App() {
             onClose={closeAllPopups}
           />
           <ImagePopup card={selectedCard} onClose={closeAllPopups} />
-          <Header />
+          <Header
+            loggedIn={loggedIn}
+            handleLogout={handleLogout}
+            user={values}
+          />
           <Routes>
             <Route
               path="/signin"
