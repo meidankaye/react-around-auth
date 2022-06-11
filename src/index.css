@@ -29,6 +29,7 @@
 @import url(./blocks/place/__trash/place__trash.css);
 @import url(./blocks/place/__trash/_hidden/place__trash_hidden.css);
 @import url(./blocks/popup/popup.css);
+@import url(./blocks/popup/__auth-image/popup__auth-image.css);
 @import url(./blocks/popup/__button/popup__button.css);
 @import url(./blocks/popup/__button/_disabled/popup__button_disabled.css);
 @import url(./blocks/popup/__close-button/popup__close-button.css);
@@ -47,6 +48,7 @@
 @import url(./blocks/popup/__input/_type/_profession/popup__input_type_profession.css);
 @import url(./blocks/popup/__title/popup__title.css);
 @import url(./blocks/popup/__title/_confirm/popup__title_confirm.css);
+@import url(./blocks/popup/__registration-text/popup__registration-text.css);
 @import url(./blocks/auth/auth.css);
 @import url(./blocks/auth/__title/auth__title.css);
 @import url(./blocks/auth/__form/auth__form.css);

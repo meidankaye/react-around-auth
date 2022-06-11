@@ -14,6 +14,7 @@ import { useNavigate, Route, Routes, Navigate } from "react-router-dom";
 import api from "../utils/api";
 import { register, authorize, validateToken } from "../utils/auth";
 import ProtectedRoute from "../components/ProtectedRoute";
+import InfoToolTip from "./InfoTooltip";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
@@ -23,6 +24,7 @@ function App() {
     React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState(undefined);
   const [isConfirmPopupOpen, setIsConfirmPopupOpen] = React.useState(false);
+  const [isInfoToolTipOpen, setIsInfoToolTipOpen] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState({
     name: "",
     about: "",
@@ -31,6 +33,7 @@ function App() {
   const [values, setValues] = React.useState({ email: "", password: "" });
   const [cards, setCards] = React.useState([]);
   const [loggedIn, setLoggedIn] = React.useState(false);
+  const [registered, setRegistered] = React.useState(false);
   const navigate = useNavigate();
 
   React.useEffect(() => {
@@ -130,6 +133,7 @@ function App() {
 
           navigate("/");
         } else {
+          setIsInfoToolTipOpen(true);
           throw new Error("No token recieved!");
         }
       })
@@ -142,9 +146,14 @@ function App() {
     register({ email, password })
       .then((user) => {
         navigate("./signin");
+        setRegistered(true);
       })
       .catch((err) => {
         console.log(err);
+        setRegistered(false);
+      })
+      .finally(() => {
+        setIsInfoToolTipOpen(true);
       });
   }
 
@@ -153,7 +162,7 @@ function App() {
     token &&
       validateToken(token)
         .then((res) => {
-          setValues(res.data.email)
+          setValues(res.data.email);
           setLoggedIn(true);
           navigate("/");
         })
@@ -174,6 +183,7 @@ function App() {
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
     setIsConfirmPopupOpen(false);
+    setIsInfoToolTipOpen(false);
     setSelectedCard(undefined);
   }
 
@@ -181,6 +191,12 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
         <div className="page__wrapper">
+          <InfoToolTip
+            name={"registration"}
+            onClose={closeAllPopups}
+            status={registered}
+            isOpen={isInfoToolTipOpen}
+          />
           <EditProfilePopup
             isOpen={isEditProfilePopupOpen}
             onClose={closeAllPopups}
