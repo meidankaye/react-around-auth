@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Register = (props) => {
-  const { loggedIn, onSubmit } = props;
+  const { onSubmit } = props;
   const [values, setValues] = useState({});
 
   const handleChange = (e) => {
@@ -14,10 +14,6 @@ const Register = (props) => {
     onSubmit({ email: values.email, password: values.password });
   };
 
-  useEffect(() => {
-    setValues({});
-  }, [loggedIn]);
-
   return (
     <div className="auth">
       <h1 className="auth__title">Sign up</h1>
@@ -26,7 +22,8 @@ const Register = (props) => {
           className="auth__input"
           placeholder="Email"
           type="email"
-          value={values.email}
+          name="email"
+          value={values.email || ""}
           onChange={handleChange}
           required
         ></input>
@@ -34,7 +31,8 @@ const Register = (props) => {
           className="auth__input"
           placeholder="Password"
           type="password"
-          value={values.password}
+          name="password"
+          value={values.password || ""}
           onChange={handleChange}
           required
         ></input>
