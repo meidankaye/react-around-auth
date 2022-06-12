@@ -1,4 +1,4 @@
-Page Available here: https://meidankaye.github.io/
+Page Available here: https://meidankaye.github.io/react-around-auth/
 
 # Getting Started with Create React App
 

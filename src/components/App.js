@@ -62,7 +62,7 @@ function App() {
           currentCard._id === card._id ? newCard : currentCard
         )
       );
-    });
+    }).catch((err) => console.log(`Error.....: ${err}`));
   }
 
   function handleCardDelete(card) {
@@ -70,7 +70,7 @@ function App() {
       setCards((state) =>
         state.filter((currentCard) => currentCard._id !== card._id)
       );
-    });
+    }).catch((err) => console.log(`Error.....: ${err}`));
   }
 
   function handleUpdateUser(userData) {
@@ -169,7 +169,7 @@ function App() {
         .catch((err) => {
           console.log(err);
         });
-  });
+  }, []);
 
   function handleLogout(e) {
     localStorage.removeItem("jwt");

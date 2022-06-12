@@ -1,5 +1,8 @@
 export const BASE_URL = "https://register.nomoreparties.co";
 
+const checkResponse = (res) =>
+  res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+
 export const register = (user) => {
   return fetch(`${BASE_URL}/signup`, {
     method: "POST",
@@ -7,38 +10,17 @@ export const register = (user) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email: user.email, password: user.password }),
-  })
-    .then((response) => {
-      try {
-        if (response.status === 200) {
-          return response.json();
-        }
-      } catch (e) {
-        return e;
-      }
-    })
-    .catch((err) => console.log(err));
+  }).then(checkResponse);
 };
 
 export const authorize = (user) => {
-  console.log(user);
   return fetch(`${BASE_URL}/signin`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email: user.email, password: user.password }),
-  })
-    .then((response) => {
-      try {
-        if (response.status === 200) {
-          return response.json();
-        }
-      } catch (e) {
-        return e;
-      }
-    })
-    .catch((err) => console.log(err));
+  }).then(checkResponse);
 };
 
 export const validateToken = (token) => {
@@ -49,16 +31,6 @@ export const validateToken = (token) => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-    })
-      .then((response) => {
-        try {
-          if (response.status === 200) {
-            return response.json();
-          }
-        } catch (e) {
-          return e;
-        }
-      })
-      .catch((err) => console.log(err));
+    }).then(checkResponse);
   }
-}
+};
