@@ -68,7 +68,7 @@ class Api extends React.Component {
 }
 
 const api = new Api({
-  baseUrl: "https://around.nomoreparties.co/v1/group-12",
+  baseUrl: "https://meidankaye-around.students.nomoreparties.sbs",
   headers: {
     authorization: "439544b2-326e-4000-bd7d-7d8ec93af705",
     "Content-Type": "application/json",
