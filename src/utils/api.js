@@ -68,10 +68,11 @@ class Api extends React.Component {
 }
 
 const api = new Api({
-  baseUrl: "https://around-project.students.nomoreparties.sbs",
+  baseUrl: "https://api.around-project.students.nomoreparties.sbs",
   headers: {
-    authorization: "439544b2-326e-4000-bd7d-7d8ec93af705",
-    "Content-Type": "application/json",
+    Accept: "application/json",
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${localStorage.getItem('jwt')}`,
   },
 });
 
