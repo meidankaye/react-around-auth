@@ -45,14 +45,14 @@ function App() {
       .catch((err) => console.log(`Error.....: ${err}`));
   }, []);
 
-  React.useEffect(() => {
-    api
-      .getInitialCards()
-      .then((cardsData) => {
-        setCards(cardsData);
-      })
-      .catch((err) => console.log(`Error.....: ${err}`));
-  }, []);
+  // React.useEffect(() => {
+  //   api
+  //     .getInitialCards()
+  //     .then((cardsData) => {
+  //       setCards(cardsData);
+  //     })
+  //     .catch((err) => console.log(`Error.....: ${err}`));
+  // }, []);
 
   function handleCardLike(card) {
     const isLiked = card.likes.some((user) => user._id === currentUser._id);
