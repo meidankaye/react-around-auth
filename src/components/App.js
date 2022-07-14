@@ -36,7 +36,7 @@ function App() {
   const [registered, setRegistered] = React.useState(false);
   const navigate = useNavigate();
 
-  React.useEffect(() => {
+  useEffect(() => {
     api
       .getUserInfo()
       .then((userData) => {
@@ -45,14 +45,14 @@ function App() {
       .catch((err) => console.log(`Error.....: ${err}`));
   }, []);
 
-  // React.useEffect(() => {
-  //   api
-  //     .getInitialCards()
-  //     .then((cardsData) => {
-  //       setCards(cardsData);
-  //     })
-  //     .catch((err) => console.log(`Error.....: ${err}`));
-  // }, []);
+  useEffect(() => {
+    api
+      .getInitialCards()
+      .then((cardsData) => {
+        setCards(cardsData);
+      })
+      .catch((err) => console.log(`Error.....: ${err}`));
+  }, [loggedIn]);
 
   function handleCardLike(card) {
     const isLiked = card.likes.some((user) => user._id === currentUser._id);
@@ -162,7 +162,7 @@ function App() {
     token &&
       validateToken(token)
         .then((res) => {
-          setValues(res.data.email);
+          setValues(res.email);
           setLoggedIn(true);
           navigate("/");
         })

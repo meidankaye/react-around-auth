@@ -1,7 +1,8 @@
 export const BASE_URL = "https://api.around-project.students.nomoreparties.sbs";
 
-const checkResponse = (res) =>
-  res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+const checkResponse = (res) => {
+  return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+};
 
 export const register = (user) => {
   return fetch(`${BASE_URL}/signup`, {
